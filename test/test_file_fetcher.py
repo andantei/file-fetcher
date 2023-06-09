@@ -25,7 +25,7 @@ class TestFileFetcher(unittest.TestCase):
         # mkdir if not exists
         Path(self.test_data_folder).mkdir(parents=True, exist_ok=True)
         self.file_fetcher = FileFetcher(
-            aws_key_id='something', aws_key_secret='somesecret', s3_bucket='somebucket', s3_prefix='somepath',
+            aws_key_id='something', aws_key_secret='somesecret', s3_endpoint='https://someendpoint', s3_bucket='somebucket', s3_prefix='somepath',
             local_dir=self.test_data_folder, cache_size=1)
         self.mock_s3 = MockS3()
         self.file_fetcher.s3 = self.mock_s3

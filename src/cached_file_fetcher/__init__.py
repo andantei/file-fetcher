@@ -5,7 +5,7 @@ import os
 from lru import LRU
 
 class FileFetcher:
-    def __init__(self, aws_key_id:str, aws_key_secret:str, s3_bucket:str, s3_prefix:str, local_dir:str, cache_size: int):
+    def __init__(self, aws_key_id:str, aws_key_secret:str, s3_endpoint:str, s3_bucket:str, s3_prefix:str, local_dir:str, cache_size: int):
         '''
         A file fetcher that first checks if the file is on the disk, and if not,
         downloads it from s3.
@@ -23,7 +23,7 @@ class FileFetcher:
             except Exception as e:
                 print(e)
         self.lru = LRU(self.cache_size, callback=remove_file_by_path)
-        self.s3 = boto3.client('s3', aws_access_key_id=aws_key_id, aws_secret_access_key=aws_key_secret)
+        self.s3 = boto3.client('s3', endpoint_url=s3_endpoint, aws_access_key_id=aws_key_id, aws_secret_access_key=aws_key_secret)
     
     def get_file(self, file_key):
         '''

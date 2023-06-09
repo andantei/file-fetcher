@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "cached-file-fetcher"
-version = "0.0.4"
+version = "0.0.5"
 authors = [{ name = "TuneFlow", email = "contact@info.tuneflow.com" }]
 description = "Fetches files from s3, and caches them on local disk while maintaining a size-limited LRU cache."
 readme = "README.md"

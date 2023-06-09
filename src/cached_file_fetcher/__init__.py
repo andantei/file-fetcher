@@ -54,9 +54,11 @@ class FileFetcher:
             return file_path
         
         # Download the file from s3
-        print(f'Downloading file {file_key} to {file_path}')
+        s3_key = f'{self.s3_prefix}/{file_key}'
+        print(f'Downloading file {s3_key} to {file_path}')
         try:
-            self.s3.download_file(self.s3_bucket, f'{self.s3_prefix}/{file_key}', file_path)
+            Path(file_path).parent.mkdir(parents=True, exist_ok=True)
+            self.s3.download_file(self.s3_bucket, s3_key, file_path)
             return file_path
         except Exception as e:
             print(e)
